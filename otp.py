@@ -21,8 +21,8 @@ def generate_pad(length:int) -> str:
         pad += (pad_letter)
     return pad
 
-def encrypt(text:str) -> str:
-    """[summary]
+def encrypt(text:str) -> tuple:
+    """Encrypts the input text and returns the pad and ciphertext
     
     Parameters
     ----------
@@ -53,6 +53,20 @@ def encrypt(text:str) -> str:
     return pad, ciphertext
 
 def decrypt(pad:str, ciphertext:str) -> str:
+    """Decrypts the ciphertext using the provided pad
+    
+    Parameters
+    ----------
+    pad : str
+        The pad used to encrypt the one time pad
+    ciphertext : str
+        The ciphertext to decrypt
+    
+    Returns
+    -------
+    str
+        The plaintext
+    """
     plaintext = ""
 
     for pad_number, ciphertext_number in zip(pad, ciphertext):
