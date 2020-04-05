@@ -1,5 +1,9 @@
 # Simple otp (One Time Pad)
 
+
+
+[TOC]
+
 **NONE of the implementations are intended for production usage**. They have not been extensively validated for it. These files are simply an **educational tool** for looking at **AN implementation** that works to help people understand it.
 
 
