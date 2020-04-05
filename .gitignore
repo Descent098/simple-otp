@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Java compiled files
+*.class
+
+# Ciphertext and plaintext files
+*.txt
