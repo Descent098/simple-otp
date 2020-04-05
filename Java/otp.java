@@ -1,12 +1,12 @@
 /**
-
 Keep in mind this is just using the standard random library so it is NOT random enough for a real implementation of the one time pad.
 */
 
 
+import java.io.*;
 import java.util.Random;
 
-class Main {
+class OTP {
 public static void main(String[] args) {
 
     String text = 
@@ -49,7 +49,12 @@ public static String generate_pad(int length){
         randomCharacter = (char) r.nextInt(256);
         pad += randomCharacter;
         }
-
+    try{
+      save(pad, "pad.txt");
+      }
+    catch (IOException e){
+        System.out.println("Can't save file");
+    }
     return pad;
     }
 
@@ -63,6 +68,12 @@ public static String encrypt(String text, String pad){
         xoredValue = (char) (text.charAt(i) ^ pad.charAt(i));
         ciphertext += xoredValue;
         }
+    try{
+      save(ciphertext, "ciphertext.txt");
+      }
+    catch (IOException e){
+        System.out.println("Can't save file");
+    }
     return ciphertext;
     }
 
@@ -77,17 +88,26 @@ public static String decrypt( String pad, String ciphertext){
 
         plaintext += xoredValue;
         }
-
+    try{
+      save(plaintext, "plaintext.txt");
+      }
+    catch (IOException e){
+        System.out.println("Can't save file");
+    }
     return plaintext;
     }
 
 /** ...
 */
-public static boolean save(String text, String path){
-
-    return false;
+public static void save(String text, String path) throws IOException{
+    BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+    try {
+        writer.write(text);
+        }
+    finally {
+          writer.close();
+      }
 
     }
 
 }
-
