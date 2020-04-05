@@ -15,7 +15,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-### Mac OS
+### Mac OS (untested)
 Download & install python3 [Download from here](https://www.python.org/downloads/)
 
 Once installed you should be able to open up a terminal and run ```python3``` with an output like this:
@@ -44,4 +44,4 @@ If that did not work for you follow the steps below.
 
 ## Run
 
-To run use ```python otp.py``` or on *nix systems (including macos) run ```python3 otp.py```
+To run use ```python otp.py``` or on *nix systems (including macos) run ```python3 otp.py```.

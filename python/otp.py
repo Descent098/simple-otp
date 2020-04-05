@@ -1,5 +1,10 @@
+"""This file contains a simple implementation of the one-time pad.
+
+It is NOT intended for production usage and has not been extensively verified for it.
+This file is simply an educational tool for AN implementation that works. """
+
 from secrets import choice   # Used to produce reliably random hex values
-from string import printable
+from string import printable # A list of printable characters to validate against
 
 
 def generate_pad(length:int) -> str:
@@ -17,40 +22,53 @@ def generate_pad(length:int) -> str:
     """
     pad = ""
     for index in range(length):
+        # Choose a random printable character
         pad_letter =  choice(printable)
         pad += (pad_letter)
+
+    save(pad, "pad.txt")
     return pad
 
-def encrypt(text:str) -> tuple:
+def encrypt(text:str, pad:str) -> str:
     """Encrypts the input text and returns the pad and ciphertext
     
     Parameters
     ----------
     text : str
-        The text to generate a ciphertext and one time pad for
+        The plaintext to generate a ciphertext
+    pad : str
+        The one-time pad to use for generating a chiphertext
     
     Returns
     -------
-    Tuple[str, str]
-        Returns both the pad and ciphertext (in that order)
+    str
+        The ciphertext
     
     Raises
     ------
     ValueError
         Raised when one of the characters is not printable ASCII
     """
-    pad = generate_pad(len(text))
-    print(f"The pad is: {pad}")
+
+    # String variable that will contain all the shifted values
     ciphertext = ""
 
     for text_character, pad_number in zip(text, pad):
         if text_character not in printable:
             raise ValueError(f"Text value: {text_character} provided is not printable ascii")
-        shifted_value = ord(text_character) ^ ord(pad_number)
-        ciphertext_character = chr(shifted_value)
+
+        # Completed the XOR of the characters ordinance (integer representation)
+        xored_value = ord(text_character) ^ ord(pad_number)
+
+        # Takes resulting integer from XOR operation and converts it to a character
+        ciphertext_character = chr(xored_value)
+
+        # Add the generated character to the ciphertext
         ciphertext += (ciphertext_character)
 
-    return pad, ciphertext
+    save(ciphertext, "ciphertext.txt")
+
+    return ciphertext
 
 def decrypt(pad:str, ciphertext:str) -> str:
     """Decrypts the ciphertext using the provided pad
@@ -65,23 +83,35 @@ def decrypt(pad:str, ciphertext:str) -> str:
     Returns
     -------
     str
-        The plaintext
+        The decrypted plaintext
     """
     plaintext = ""
 
     for pad_number, ciphertext_number in zip(pad, ciphertext):
         plaintext += chr( ord(pad_number) ^ ord(ciphertext_number))
 
+    save(plaintext, "plaintext.txt")
+
     return plaintext
 
 
-def save(text:str, path:str) -> bool:
+def save(text:str, path:str):
+    """Takes in text and saves it to the provided path
+    
+    Parameters
+    ----------
+    text : str
+        The text to save to a file
+    path : str
+        The path to save it to
+    """
     with open(path, "w+") as output_file:
         output_file.write(text)
 
 
 if __name__ == "__main__":
-    plaintext = '''Do not go gentle into that good night,
+    # The text to encrypt
+    text = '''Do not go gentle into that good night,
 Old age should burn and rave at close of day;
 Rage, rage against the dying of the light.
 Though wise men at their end know dark is right,
@@ -100,10 +130,15 @@ And you, my father, there on the sad height,
 Curse, bless, me now with your fierce tears, I pray.
 Do not go gentle into that good night.
 Rage, rage against the dying of the light.'''
-    pad, ciphertext = encrypt(plaintext)
-    print(f"Pad is {pad}\nciphertext is {ciphertext}")
 
-    # Write the results to files
-    save(pad, "pad.txt")
-    save(ciphertext, "ciphertext.txt")
-    save(plaintext, "plaintext.txt")
+    # Generate a pad the same length as the text
+    pad = generate_pad(len(text))
+    print(f"The pad is: {pad}")
+
+    # Generate a ciphertext from the pad and plaintext
+    ciphertext = encrypt(text, pad)
+    print(f"\nThe ciphertext is: {ciphertext}")
+
+    # Decrypt and return result
+    plaintext = decrypt(pad, ciphertext)
+    print(f"\nThe calculated plaintext is: {plaintext}")
