@@ -1,15 +1,21 @@
 # Simple otp (One Time Pad)
 
-
-
-[TOC]
-
 **NONE of the implementations are intended for production usage**. They have not been extensively validated for it. These files are simply an **educational tool** for looking at **AN implementation** that works to help people understand it.
-
-
 
 There is an accompanying video that walks-through the python implementation that I will post a link to once I complete it. Additionally you can find an in-depth explanation below of the protocol and how to use the implementations (again not in production applications).
 
+## Table of contents
+- [Usage](#usage)    
+- [Glossary](#glossary)        
+   - [Variables](#variables)        
+   - [Functions](#functions)    
+- [Theory](#theory)        
+   - [1. Background](#1-background)        
+   - [2. ASCII Conversion](#2-ascii-conversion)       
+   - [3. Pad Generation](#3-pad-generation)       
+   - [4. Generating a ciphertext](#4-generating-a-ciphertext)      
+   - [5. Decrypting to plaintext](#5-decrypting-to-plaintext)            
+- [ASCII table](#ascii-table-provided-by-the-built-in-one-on-bing)
 
 
 ## Usage
