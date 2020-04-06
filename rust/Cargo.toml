@@ -1,5 +1,5 @@
 [package]
-name = "rust"
+name = "otp"
 version = "0.1.0"
 authors = ["Kieran Wood <kieranw098@gmail.com>"]
 edition = "2018"
