@@ -53,12 +53,12 @@ def encrypt(text:str, pad:str) -> str:
     # String variable that will contain all the shifted values
     ciphertext = ""
 
-    for text_character, pad_number in zip(text, pad):
+    for text_character, pad_character in zip(text, pad):
         if text_character not in printable:
             raise ValueError(f"Text value: {text_character} provided is not printable ascii")
 
         # Completed the XOR of the characters ordinance (integer representation)
-        xored_value = ord(text_character) ^ ord(pad_number)
+        xored_value = ord(text_character) ^ ord(pad_character)
 
         # Takes resulting integer from XOR operation and converts it to a character
         ciphertext_character = chr(xored_value)
@@ -87,8 +87,9 @@ def decrypt(pad:str, ciphertext:str) -> str:
     """
     plaintext = ""
 
-    for pad_number, ciphertext_number in zip(pad, ciphertext):
-        plaintext += chr( ord(pad_number) ^ ord(ciphertext_number))
+    for pad_character, ciphertext_number in zip(pad, ciphertext):
+        xored_value = ord(pad_character) ^ ord(ciphertext_number)
+        plaintext += chr(xored_value)
 
     save(plaintext, "plaintext.txt")
 
