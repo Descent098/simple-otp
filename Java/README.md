@@ -1,6 +1,6 @@
 # Usage
 
-## Download
+## Download & install java
 
 ### Windows
 Download & install Java JRE and JDK ([autoinstaller](https://ninite.com/adoptjavax11-adoptjdkx11/)).

@@ -37,10 +37,10 @@ public static void main(String[] args) {
     System.out.println(System.out.format("The pad is: %s", pad));
 
     String ciphertext = encrypt(text, pad);
-    System.out.println(System.out.format("The ciphertext is: %s", ciphertext));
+    System.out.println(System.out.format("\nThe ciphertext is: %s", ciphertext));
 
     String plaintext = decrypt(pad, ciphertext);
-    System.out.println(System.out.format("The plaintext is: %s", plaintext));
+    System.out.println(System.out.format("\nThe decrypted plaintext is: %s", plaintext));
 
     }
 

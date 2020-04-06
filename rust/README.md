@@ -20,5 +20,6 @@ Run ```cargo run```
 
 ### Compile and run as many times as you want
 
-1. Compile using ```cargo build```
-2. Run the resulting binary
+1. Compile using ```cargo build --release --target-dir build```
+2. run cd into the ```build/release``` directory
+2. Run the otp binary (.exe on windows and plain binary on *nix)

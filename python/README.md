@@ -2,7 +2,7 @@
 
 Note you need a python above version 3.6 because of the f-strings I used, you can check the version by runnning ```python --version```. If you have python installed and it is higher than 3.6 move on to the run section of this readme.
 
-## Download
+## Download & install python 3
 
 ### Windows 
 Download & install python3 [Download from here](https://www.python.org/downloads/) **make sure to check the box that says 'add to path' when installing**.

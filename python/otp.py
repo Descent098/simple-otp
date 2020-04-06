@@ -30,7 +30,7 @@ def generate_pad(length:int) -> str:
     return pad
 
 def encrypt(text:str, pad:str) -> str:
-    """Encrypts the input text and returns the pad and ciphertext
+    """Encrypts the input text and returns the ciphertext
     
     Parameters
     ----------
@@ -141,4 +141,4 @@ Rage, rage against the dying of the light.'''
 
     # Decrypt and return result
     plaintext = decrypt(pad, ciphertext)
-    print(f"\nThe calculated plaintext is: {plaintext}")
+    print(f"\nThe decrypted plaintext is: {plaintext}")
