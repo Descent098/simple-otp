@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
-	"strings"
 	"time"
 )
 
@@ -48,19 +47,16 @@ func main() {
 
 // Generates a pad of random characters
 func generatePad(length int) string {
-	// Create a byte array long enough to hold all of our characters
-	padArray := make([]byte, length)
+	var pad string
 
 	// The random characters to be chosen from
 	const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 	// Add characters to the pad until it is the specified length
-	for i := range padArray {
-		padArray[i] = characters[seededRand.Intn(len(characters))]
-	}
 
-	// Cast the byte array to a string and store it in the pad variable
-	pad := string(padArray)
+	for i := 0; i < length; i++ {
+		pad += string(characters[seededRand.Intn(len(characters))])
+	}
 
 	save(pad, "pad.txt")
 	return pad
@@ -68,8 +64,7 @@ func generatePad(length int) string {
 
 // Encrypts the input text and returns the pad and ciphertext
 func encrypt(text string, pad string) string {
-	// AFAIK you can only stringbuild with a string array so i'm building the string array first then casting to a string
-	ciphertextArray := make([]string, len(pad))
+	var ciphertext string
 
 	// The result of the XORing of the current original text and pad characters in the iteration
 	var xoredValue int
@@ -77,20 +72,17 @@ func encrypt(text string, pad string) string {
 	for i := range pad {
 		xoredValue = int(text[i]) ^ int(pad[i])
 
-		// Store the character representation of xoredValue to the ciphertext array
-		ciphertextArray[i] = string(xoredValue)
+		// Store the character representation of xoredValue to the ciphertext string
+		ciphertext += string(xoredValue)
 	}
 
-	// Cast the ciphertext array from a string array to a plain string
-	ciphertext := strings.Join(ciphertextArray, "")
 	save(ciphertext, "ciphertext.txt")
 	return ciphertext
 }
 
 // Decrypts the ciphertext using the provided pad
 func decrypt(pad string, ciphertext string) string {
-	// AFAIK you can only stringbuild with a string array so i'm building the string array first then casting to a string
-	plaintextArray := make([]string, len(pad))
+	var plaintext string
 
 	// The result of the XORing of the current pad and ciphertext characters in the iteration
 	var xoredValue int
@@ -98,12 +90,9 @@ func decrypt(pad string, ciphertext string) string {
 	for i := range pad {
 		xoredValue = int(ciphertext[i]) ^ int(pad[i])
 
-		// Store the character representation of xoredValue to the plaintext array
-		plaintextArray[i] = string(xoredValue)
+		// Store the character representation of xoredValue to the plaintext string
+		plaintext += string(xoredValue)
 	}
-
-	// Cast the plaintext array from a string array to a plain string
-	plaintext := strings.Join(plaintextArray, "")
 
 	save(plaintext, "plaintext.txt")
 	return plaintext
