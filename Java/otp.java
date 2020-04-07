@@ -1,13 +1,12 @@
+import java.io.*;
+import java.util.Random;
+
 /** This file contains a simple implementation of the one-time pad.
 
 It is NOT intended for production usage and has not been extensively verified for it.
 This file is simply an educational tool for AN implementation that works. */
-
-
-import java.io.*;
-import java.util.Random;
-
-class OTP {
+public class OTP {
+// The primary entrypoint for the program
 public static void main(String[] args) {
 
     // The text to encrypt
@@ -44,7 +43,10 @@ public static void main(String[] args) {
 
     }
 
-/** Generates a pad of random characters */
+/** Generates a pad of random characters
+ * @param length the length of the pad you want to generate
+ * @return The randomly generate one time pad
+ */
 public static String generate_pad(int length){
     String pad = "";
     char randomCharacter; // Used to hold the current randomly generated character each iteration
@@ -66,7 +68,11 @@ public static String generate_pad(int length){
     return pad;
     }
 
-/** Encrypts the input text and returns the pad and ciphertext */
+/** Encrypts the input text and returns the pad and ciphertext
+ * @param text the text you want to encrypt
+ * @param pad the one time pad you wan to encrypt the text with
+ * @return The ciphertext of the text and pad
+ */
 public static String encrypt(String text, String pad){
 
     String ciphertext = "";
@@ -88,7 +94,11 @@ public static String encrypt(String text, String pad){
     return ciphertext;
     }
 
-/** Decrypts the ciphertext using the provided pad */
+/** Decrypts the ciphertext using the provided pad
+ * @param pad The one time pad you wan to decrypt the ciphertext with
+ * @param ciphertext The ciphertext you want to decrypt
+ * @return The plaintext decryption of the ciphertext, by using the pad
+ */
 public static String decrypt( String pad, String ciphertext){
     String plaintext = "";
     char xoredValue;
@@ -111,7 +121,11 @@ public static String decrypt( String pad, String ciphertext){
     return plaintext;
     }
 
-/** Takes in text and saves it to the provided path */
+/** Takes in text and saves it to the provided path 
+ * @param text The text you want to write to a file
+ * @param path The path to the file you want to save
+ * @throws IOException Exception is raised when file can't be created at specified path
+*/
 public static void save(String text, String path) throws IOException{
     BufferedWriter writer = new BufferedWriter(new FileWriter(path));
     try {
