@@ -1,41 +1,65 @@
+// File is in a questionable state rn so i'm commenting out the code until it's more stable
+
+
+/**
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
 
+void save(char *text, char *path){
+  FILE *f = fopen(path, "w");
+  if (f == NULL) {
+      printf("Error opening file!\n");
+      exit(1);
+    }
+  fprintf(f, "%s\n", text);
+}
+
 char* generate_pad(int length){
     srand(time(NULL));   // Initialization, of random library
-    int pad[length]; 
+    char pad[length]; 
 
     int random_number;
 
     for( int i = 0 ; i < length ; i++ ) {
-        random_number = rand() % 255;
         // Generate number between 0 and 255
-        printf("%d\n", random_number);
+        random_number = rand() % 255;
+        pad[i] = (char) random_number;
     }
 
-    return "pad";
+    return pad;
 }
 
-char * encrypt(char *text){
+char * encrypt(char *text, char *pad){
+  char ciphertext[strlen(text)];
+  int xoredValue;
 
-    const char *pad = generate_pad(strlen(text));
+  for( int i = 0 ; i < strlen(text) ; i++ ) {
+        xoredValue = text[i] ^ pad[i];
+        ciphertext[i] = (char) xoredValue;
+    }
 
-    return "Encrypted String";
+    return ciphertext;
 }
 
 char * decrypt(char *pad, char *ciphertext){
 
-    return "Decrypted String";
-}
+    
+  char plaintext[strlen(pad)];
+  int xoredValue;
 
-void save(){
+  for( int i = 0 ; i < strlen(pad) ; i++ ) {
+        xoredValue = ciphertext[i] ^ pad[i];
+        plaintext[i] = (char) xoredValue;
+    }
 
+    save(plaintext, "plaintext.txt");
+    return plaintext;
 }
 
 int main(void) {
-  const char *plaintext = "\
+  const char *text = "\
     Do not go gentle into that good night,\n\
     Old age should burn and rave at close of day;\n\
     Rage, rage against the dying of the light.\n\
@@ -56,9 +80,18 @@ int main(void) {
     Do not go gentle into that good night.\n\
     Rage, rage against the dying of the light.";
 
-printf("%s", encrypt(plaintext));
+  char* pad = generate_pad(strlen(text));
+  printf("The pad is: %s", pad);
+
+  char* ciphertext = encrypt(text, pad);
+  printf("\n\nThe ciphertext is: %s", ciphertext);
+
+  char* plaintext = decrypt(pad, ciphertext);
+  printf("\n\nThe plaintext is: %s", plaintext);
 
 
 
 return 0;
 }
+
+*/
