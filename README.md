@@ -31,7 +31,7 @@ Throughout the files I use a set of standardized terms to refer to variables and
 
 ### Variables
 
-text: The text that you want to encrypt, in all files this is hardcoded and I am using [Do not go gentle into that good night by Dylan Thomas](https://poets.org/poem/do-not-go-gentle-good-night).
+***text***: The text that you want to encrypt, in all files this is hardcoded and I am using [Do not go gentle into that good night by Dylan Thomas](https://poets.org/poem/do-not-go-gentle-good-night).
 
 
 
@@ -53,19 +53,19 @@ text: The text that you want to encrypt, in all files this is hardcoded and I am
 
 
 
-***Generate pad***: Used to generate the one-time pad. Will take in an integer for the length of pad it needs to generate and return whatever type is most appropriate for the language (either a string or charArray). This is completed during step 3 of the theory section.
+***Generate pad***: Used to generate the one-time pad. Will take in an integer for the length of pad it needs to generate and return whatever type is most appropriate for the language (either a string or char array). This is completed during step 3 of the theory section.
 
 
 
-***Encrypt***: Generates the ciphertext using the pad and text, then return it as whatever type is most appropriate for the language (either a string or charArray). This is completed during step 4 of the theory section.
+***Encrypt***: Generates the ciphertext using the pad and text, then return it as whatever type is most appropriate for the language (either a string or char array). This is completed during step 4 of the theory section.
 
 
 
-***Decrypt***: Takes in the ciphertext and pad, generates the plaintext and return it as whatever type is most appropriate for the language (either a string or charArray). This is completed during step 5 of the theory section.
+***Decrypt***: Takes in the ciphertext and pad, generates the plaintext and return it as whatever type is most appropriate for the language (either a string or char array). This is completed during step 5 of the theory section.
 
 
 
-***Save***: Takes in either a string or charArray based on which language it is, and a file path then serializes the string/charArray to the path provided.
+***Save***: Takes in either a string or char array based on which language it is, and a file path then serializes the string/char array to the path provided.
 
 
 ## Theory
@@ -108,7 +108,7 @@ Additionally to maintain secrecy there are a few things that need to be done:
 
 
 ### 2. ASCII Conversion
-One way to do a conversion from string/chars to integers is to use an ASCII table, which allows you to have a 1-1 mapping of characters to an (at most) 2 byte integer. For example let's convert the string 'Hello' using the ASCII table below. The 'H' corresponds to 72 (0x48 in hex and 0b1001000 in binary) using the chart so that would be our first integer. The whole sequence would then be (72, 101, 108, 108, 111).
+One way to do a conversion from string/chars to integers is to use an [ASCII table](#ascii-table-provided-by-the-built-in-one-on-bing), which allows you to have a 1-1 mapping of characters to an (at most) 2 byte integer. For example let's convert the string 'Hello' using the ASCII table below. The 'H' corresponds to 72 (0x48 in hex and 0b1001000 in binary) using the chart so that would be our first integer. The whole sequence would then be (72, 101, 108, 108, 111).
 
 
 
