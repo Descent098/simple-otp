@@ -15,6 +15,13 @@ def generate_pad(length:int) -> str:
     length : int
         The length of the pad you want to generate
     
+    Examples
+    --------
+    Creating a 5 character long pad
+    ```
+    pad = generate_pad(5) # Pad == uBV,;
+    ```
+
     Returns
     -------
     str
@@ -39,6 +46,14 @@ def encrypt(text:str, pad:str) -> str:
     pad : str
         The one-time pad to use for generating a chiphertext
     
+    Examples
+    --------
+    Encrypting 'Hello'
+    ```
+    pad = generate_pad(5) # Pad == uBV,;
+    ciphertext = encrypt('Hello', pad) # ciphertext == "=':@T"
+    ```
+
     Returns
     -------
     str
@@ -80,6 +95,15 @@ def decrypt(pad:str, ciphertext:str) -> str:
     ciphertext : str
         The ciphertext to decrypt
     
+    Examples
+    --------
+    Encrypting & Decrypting 'Hello'
+    ```
+    pad = generate_pad(5) # Pad == uBV,;
+    ciphertext = encrypt('Hello', pad) # ciphertext == "=':@T"
+    plaintext = decrypt(pad, ciphertext) # plaintext == "Hello"
+    ```
+
     Returns
     -------
     str
@@ -105,9 +129,19 @@ def save(text:str, path:str):
         The text to save to a file
     path : str
         The path to save it to
+
+    Examples
+    --------
+    Saving 'Hello' to 'hello.txt'
+    ```
+    save('hello', 'hello.txt')
+    ```
     """
-    with open(path, "w+") as output_file:
-        output_file.write(text)
+    try:
+        with open(path, "w+") as output_file:
+            output_file.write(text)
+    except:
+        print(f"Unable to save file {path}")
 
 
 if __name__ == "__main__":

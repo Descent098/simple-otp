@@ -2,12 +2,12 @@
 /// It is NOT intended for production usage and has not been extensively verified for it.
 /// This file is simply an educational tool for AN implementation that works.
 
-extern crate rand; // Used to generate random numbers
+extern crate rand;           // Used to generate random numbers
 
-use std::fs::File;
-use std::io::Write;
-use std::path::Path;
-use rand::{thread_rng, Rng};
+use std::fs::File;           // Used to open files
+use std::io::Write;          // Uses to write text to files
+use std::path::Path;         // Used to write files to paths
+use rand::{thread_rng, Rng}; // Random number generation system
 
 /// The primary entrypoint that's run when the file get's run
 fn main() {
@@ -32,17 +32,25 @@ fn main() {
     Do not go gentle into that good night.
     Rage, rage against the dying of the light.");
 
+    // Pad Generation
     let pad = generate_pad(text.chars().count());
     println!("The pad is: {}", pad);
 
+    // Generating a ciphertext
     let ciphertext = encrypt(&text, &pad);
     println!("\nThe ciphertext is: {}", ciphertext);
 
+    // Decrypting to plaintext
     let plaintext = decrypt(&pad, &ciphertext);
     println!("\nThe decrypted plaintext is: {}", plaintext);
 }
 
 /// Generates a pad of random characters equal to the length argument
+/// 
+/// Parameters
+/// ----------
+/// length : usize
+///     The length of the pad you want to generate
 /// 
 /// Example
 /// -------
@@ -50,6 +58,10 @@ fn main() {
 /// let pad = generate_pad(25); // Generates a 25 character long pad
 /// println!("The pad is: {}", pad);
 /// ```
+/// Returns
+/// -------
+/// String
+///     The generated one time page
 pub fn generate_pad(length:usize) -> String{
     
     let mut pad = String::new();
@@ -82,6 +94,13 @@ pub fn generate_pad(length:usize) -> String{
 
 /// Encrypts the input text and returns the pad and ciphertext
 /// 
+/// Parameters
+/// ----------
+/// text : &String
+///     The plaintext to generate a ciphertext
+/// pad : &String
+///     The one-time pad to use for generating a chiphertext
+/// 
 /// Example
 /// -------
 /// ```rust
@@ -90,6 +109,11 @@ pub fn generate_pad(length:usize) -> String{
 /// let ciphertext = encrypt(text, pad);
 /// println!("The ciphertext is: {}", ciphertext);
 /// ```
+///     
+/// Returns
+/// -------
+/// String
+///     The ciphertext
 pub fn encrypt(text: &String, pad: &String) -> String{
     let mut ciphertext = String::new();
 
@@ -116,6 +140,13 @@ pub fn encrypt(text: &String, pad: &String) -> String{
 
 /// Decrypts the ciphertext using the provided pad
 /// 
+/// Parameters
+/// ----------
+/// pad : &String
+///     The pad used to encrypt the one time pad
+/// ciphertext : &String
+///     The ciphertext to decrypt
+/// 
 /// Example
 /// -------
 /// ```rust
@@ -125,6 +156,12 @@ pub fn encrypt(text: &String, pad: &String) -> String{
 /// let plaintext = decrypt(pad, ciphertext);
 /// println!("The decrypted plaintext is: {}", plaintext); // Prints: Secret data
 /// ```
+///     
+/// Returns
+/// -------
+/// String
+///     The decrypted plaintext
+
 pub fn decrypt(pad: &String, ciphertext: &String) -> String{
     let mut plaintext = String::new();
 
@@ -150,8 +187,16 @@ pub fn decrypt(pad: &String, ciphertext: &String) -> String{
 
 /// Takes in a String and path and writes the String to the path
 /// 
+/// Parameters
+/// ----------
+/// text : &String
+///     The text to save to a file
+/// path : &Path
+///     The path to save the text to
+/// 
 /// Example
 /// -------
+/// Save "Secret Data" to output.txt
 /// ```rust
 /// let text = String::from("Secret data");
 /// let path = Path::new("output.txt");
