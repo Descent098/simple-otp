@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Demo</title>
+    <!--Stylesheet used because writing your own CSS takes effort, check it out on https://bulma.io/-->
+    <link rel="stylesheet" href="bulma.css"/>
+</head>
+
+<!--Start of navbar-->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="https://github.com/Descent098/simple-otp/blob/master/Javascript/otp.js" target="_blank">Source</a>
+            <a class="navbar-item" href="https://github.com/Descent098/simple-otp#theory" target="_blank">Explanation</a>
+        </div>
+    </div>
+</nav>
+<!--End of navbar-->
+
+<body>
+    <div class="columns">
+        <div class="column is-4">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">Pad</p>
+                    <!--This tag will be overwritten with the resulting pad on page load-->
+                    <p id="pad"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-4">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">Ciphertext</p>
+                    <!--This tag will be overwritten with the resulting ciphertext on page load-->
+                    <p id="ciphertext"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-4">
+            <div class="card">
+                <div class="card-content">
+                    <!--This tag will be overwritten with the resulting plaintext on page load-->
+                    <p class="title">Plaintext</p>
+                    <p id="plaintext"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!--Bring in the otp.js file and run it-->
+<script src="otp.js"></script>
+</html>
