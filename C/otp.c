@@ -1,13 +1,14 @@
-// File is in a questionable state rn so i'm commenting out the code until it's more stable
+// Honestly this is in the git history for posterity, looks like theres some pointer garbage going on I can't debug so i'm getting rid of this version
 
-
-/**
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
 
-void save(char *text, char *path){
+const int text_length = 939; // How many characters are in the text variable
+
+
+void save(char text[], char path[]){
   FILE *f = fopen(path, "w");
   if (f == NULL) {
       printf("Error opening file!\n");
@@ -16,7 +17,7 @@ void save(char *text, char *path){
   fprintf(f, "%s\n", text);
 }
 
-char* generate_pad(int length){
+void generate_pad(int length, char* var){
     srand(time(NULL));   // Initialization, of random library
     char pad[length]; 
 
@@ -28,10 +29,11 @@ char* generate_pad(int length){
         pad[i] = (char) random_number;
     }
 
-    return pad;
+    save(pad, "pad.txt");
+    strcpy(var, pad);
 }
 
-char * encrypt(char *text, char *pad){
+void encrypt(char text[], char * pad, char* var){
   char ciphertext[strlen(text)];
   int xoredValue;
 
@@ -40,13 +42,14 @@ char * encrypt(char *text, char *pad){
         ciphertext[i] = (char) xoredValue;
     }
 
-    return ciphertext;
+    save(ciphertext, "ciphertext.txt");
+    strcpy(var, ciphertext);
 }
 
-char * decrypt(char *pad, char *ciphertext){
+const char* decrypt(char* pad, char* ciphertext, char* var){
 
     
-  char plaintext[strlen(pad)];
+  char plaintext[text_length];
   int xoredValue;
 
   for( int i = 0 ; i < strlen(pad) ; i++ ) {
@@ -55,11 +58,11 @@ char * decrypt(char *pad, char *ciphertext){
     }
 
     save(plaintext, "plaintext.txt");
-    return plaintext;
+    strcpy(var, plaintext);
 }
 
 int main(void) {
-  const char *text = "\
+  const char text[] = "\
     Do not go gentle into that good night,\n\
     Old age should burn and rave at close of day;\n\
     Rage, rage against the dying of the light.\n\
@@ -80,18 +83,21 @@ int main(void) {
     Do not go gentle into that good night.\n\
     Rage, rage against the dying of the light.";
 
-  char* pad = generate_pad(strlen(text));
+
+
+  char pad[text_length];
+  generate_pad(text_length, pad);
   printf("The pad is: %s", pad);
 
-  char* ciphertext = encrypt(text, pad);
+  char ciphertext[text_length];
+  encrypt(text, pad, ciphertext);
   printf("\n\nThe ciphertext is: %s", ciphertext);
 
-  char* plaintext = decrypt(pad, ciphertext);
+  char plaintext[text_length];
+  decrypt(pad, ciphertext, plaintext);
   printf("\n\nThe plaintext is: %s", plaintext);
 
 
 
 return 0;
 }
-
-*/
