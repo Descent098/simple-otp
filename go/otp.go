@@ -4,14 +4,11 @@
 package main
 
 import (
+	"crypto/rand"
 	"fmt"
-	"math/rand"
+	"math/big"
 	"os"
-	"time"
 )
-
-// Initializing seed for random number generator
-var seededRand *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 func main() {
 
@@ -54,8 +51,13 @@ func generatePad(length int) string {
 
 	// Add characters to the pad until it is the specified length
 
+	charactersLength := big.NewInt(int64(len(characters))) // The length of the characters const as a big Int
 	for i := 0; i < length; i++ {
-		pad += string(characters[seededRand.Intn(len(characters))])
+		randomNumber, err := rand.Int(rand.Reader, charactersLength)
+		if err != nil {
+			panic(err)
+		}
+		pad += string(characters[randomNumber.Int64()])
 	}
 
 	save(pad, "pad.txt")
@@ -104,6 +106,14 @@ func save(text string, path string) {
 	if err != nil {
 		panic(err)
 	}
-	file.Write([]byte(text))
-	defer file.Close()
+	_, writeErr := file.Write([]byte(text))
+
+	if writeErr != nil {
+		panic(writeErr)
+	}
+
+	closeErr := file.Close()
+	if closeErr != nil {
+		panic(closeErr)
+	}
 }
