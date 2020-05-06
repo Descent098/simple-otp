@@ -2,7 +2,9 @@
 
 **NONE of the implementations are intended for production usage**. They have not been extensively validated for it. These files are simply an **educational tool** for looking at **AN implementation** that works to help people understand it.
 
-There is an accompanying video that walks-through the python implementation that I will post a link to once I complete it. Additionally you can find an in-depth explanation below of the protocol and how to use the implementations (again not in production applications).
+There are two accompanying videos to this repository, one walks through the python implementation in detail, and another is an animated explanation of the one-time pad protocol on the whole:
+- [Python Code Walkthrough](https://www.youtube.com/watch?v=50XM-h3h6Fw)
+- [Animated Explanation](https://www.youtube.com/watch?v=QVV_bUxxiZ8)
 
 ## Table of contents
 - [Usage](#usage)    
@@ -71,6 +73,8 @@ Throughout the files I use a set of standardized terms to refer to variables and
 ## Theory
 
 *This explanation is meant to be somewhat simplistic and skip over some of the detail about secrecy and **proofs** why the math works. This description is meant to be a laymen's terms, step-by-step walkthrough of how the one-time pad protocol works.*
+
+Again there is also an [animated explanation](https://www.youtube.com/watch?v=QVV_bUxxiZ8) of the protocol you can watch.
 
 
 
